@@ -6161,7 +6161,7 @@ button.close {
 
 .fa {
   display: inline-block;
-  font: normal normal normal 14px / 1 FontAwesome;
+  font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
@@ -11282,6 +11282,23 @@ ul {
   -webkit-animation-name: slideOutUp;
   animation-name: slideOutUp; }
 
+.btn-slim {
+  padding: 0 10px !important;
+  font-size: 14px; }
+
+.modal .modal-dialog .modal-content {
+  padding: 10px 20px 10px; }
+  .modal .modal-dialog .modal-content .modal-header .close {
+    font-size: 28px; }
+  .modal .modal-dialog .modal-content .modal-header h4 {
+    font-weight: bold; }
+  .modal .modal-dialog .modal-content .modal-body {
+    padding-top: 30px; }
+    .modal .modal-dialog .modal-content .modal-body form .form-group.sub-btn {
+      text-align: right;
+      margin-top: 20px;
+      margin-right: 2px; }
+
 .popwin {
   width: 300px;
   height: 150px;
@@ -12075,3 +12092,7 @@ i[class^="icon"] {
   color: #7f8c8d; }
   .zyh-button-grey:hover {
     background-color: rgba(236, 240, 241, 0.7); }
+
+#workers-mng #new-worker {
+  display: block;
+  margin-top: 40px; }
