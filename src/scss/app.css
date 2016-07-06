@@ -8219,74 +8219,98 @@ a:hover {
 ul {
   list-style: none; }
 
-header {
+/*header{
+  //border-bottom: 1px #666 solid;
   min-width: 1280px;
   background-color: white;
   box-shadow: 0px 2px 3px #888888;
   padding: 15px 0px;
   font-size: 14px;
-  margin: 0px; }
-  header .logo {
+  margin: 0px;
+  .logo{
     font-family: shouxie1,headerfont;
     font-size: 28px;
-    padding-left: 50px; }
-  header .search {
-    font-size: 15px; }
-  header .button-group {
+    padding-left: 50px;
+  }
+  .search{
+    font-size: 15px;
+  }
+  .button-group{
     text-align: center;
-    line-height: 27px; }
-    header .button-group .registe {
-      margin-left: 20px; }
-    header .button-group a {
-      transition-duration: 0.5s;
-      text-decoration: none; }
-      header .button-group a:hover {
-        color: #3498DB; }
-  header #modal .modal-dialog-mask {
-    z-index: 9998;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    opacity: 0.1;
-    filter: alpha(opacity=40);
-    /*用于支持IE特么的有病*/
-    display: none; }
-  header #modal #login {
-    font-size: 14px;
-    z-index: 9999;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    margin: -180px 0 0 -330px;
-    border-radius: 5px;
-    border: solid 2px #666;
-    background-color: #fff;
-    display: none;
-    box-shadow: 0 0 10px #666; }
-    header #modal #login .input-group {
-      margin: 30px; }
-  header #modal #register {
-    z-index: 9999;
-    position: fixed;
-    top: 45%;
-    left: 50%;
-    margin: -250px 0 0 -330px;
-    border-radius: 5px;
-    border: solid 2px #666;
-    background-color: #fff;
-    display: none;
-    box-shadow: 0 0 10px #666; }
-    header #modal #register .input-group {
-      margin: 30px; }
+    line-height: 27px;
+    .login{
 
+    }
+    .registe{
+      margin-left: 20px;
+    }
+    a{
+      @include trans;
+      text-decoration: none;
+      &:hover{
+        color: $blue;
+      }
+    }
+  }
+  #modal{
+
+    .modal-dialog-mask {
+      z-index: 9998;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      opacity: 0.1;
+      filter: alpha(opacity=40); /!*用于支持IE特么的有病*!/
+      display: none;
+    }
+
+    #login {
+      font-size: 14px;
+      z-index: 9999;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      margin: -180px 0 0 -330px;
+      border-radius: 5px;
+      border: solid 2px #666;
+      background-color: #fff;
+      display: none;
+      box-shadow: 0 0 10px #666;
+      .input-group{
+        margin: 30px;
+      }
+    }
+
+    #register {
+      z-index: 9999;
+      position: fixed;
+      top: 45%;
+      left: 50%;
+      margin: -250px 0 0 -330px;
+      border-radius: 5px;
+      border: solid 2px #666;
+      background-color: #fff;
+      display: none;
+      box-shadow: 0 0 10px #666;
+      .input-group{
+        margin: 30px;
+      }
+    }
+
+  }
+}*/
 .main .nav {
   float: left; }
   .main .nav #demo-list {
-    min-height: 400px;
+    min-height: 570px;
     background-color: white; }
+    .main .nav #demo-list .logo {
+      font-family: shouxie1,headerfont;
+      font-size: 28px;
+      padding: 20px 40px; }
   .main .nav .jquery-accordion-menu {
     min-width: 260px;
     float: left;
@@ -8774,45 +8798,6 @@ header {
 .flex-12 {
   flex: 12; }
 
-#searchResult {
-  position: relative; }
-  #searchResult .footRecommend {
-    position: fixed;
-    bottom: 0;
-    left: 25%;
-    border: 1px solid #c2c2c2;
-    border-radius: 4px;
-    width: 70%;
-    height: 130px;
-    z-index: 3;
-    background-color: white; }
-    #searchResult .footRecommend .header {
-      height: 30px;
-      line-height: 30px;
-      border-bottom: 1px solid #dbdbdb;
-      background-color: #ebebeb; }
-      #searchResult .footRecommend .header .need {
-        font-size: 15px;
-        padding-left: 20px; }
-      #searchResult .footRecommend .header .close {
-        font-size: 30px;
-        padding-right: 20px; }
-    #searchResult .footRecommend .body {
-      width: 70%;
-      margin: auto auto; }
-      #searchResult .footRecommend .body .icon-el {
-        width: 64px;
-        margin: 10px 25px; }
-        #searchResult .footRecommend .body .icon-el .title {
-          text-align: center;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          cursor: pointer;
-          transition-duration: 0.5s; }
-          #searchResult .footRecommend .body .icon-el .title:hover {
-            color: #3498DB; }
-
 .login-bg {
   min-height: 630px;
   background: url(../images/bg.png) top center no-repeat;
@@ -8899,110 +8884,6 @@ header {
   #login-box .form-all button {
     width: 70%;
     margin-top: 10px; }
-
-.file-details > * {
-  float: left; }
-.file-details .show-true {
-  width: 60%;
-  height: 200px;
-  background-color: red; }
-.file-details .show-details {
-  width: 40%;
-  height: 200px;
-  background-color: green; }
-
-.contents.file-collect .catalog * {
-  font-size: 20px; }
-.contents.file-collect .button-group {
-  margin: 10px auto;
-  padding: 10px 0;
-  border-bottom: 1px solid #666; }
-  .contents.file-collect .button-group button {
-    padding: 5px 15px;
-    text-align: center;
-    background: none;
-    border: 1px solid #CCC;
-    border-radius: 8px;
-    transition: all 0.2s ease-in 0.1s;
-    margin-left: 25px; }
-    .contents.file-collect .button-group button:hover {
-      background: rgba(52, 152, 219, 0.6);
-      color: #fff; }
-.contents.file-collect .alldom {
-  width: 100%;
-  height: 100%; }
-  .contents.file-collect .alldom #divall {
-    padding: 0;
-    list-style: none; }
-    .contents.file-collect .alldom #divall li {
-      overflow: hidden;
-      width: 100px;
-      height: 115px;
-      float: left;
-      margin-left: 55px;
-      background: url(../images/213125.png) center top no-repeat;
-      border: 1px solid #fff;
-      position: relative;
-      transition: all 0.2s ease-in 0.1s; }
-      .contents.file-collect .alldom #divall li.bgclocrc, .contents.file-collect .alldom #divall li:hover {
-        background: url(../images/213125.png) center top no-repeat #f1f2fd;
-        border: 1px solid #a7aae3; }
-.contents.file-collect input {
-  width: 95px;
-  height: 24px;
-  line-height: 20px;
-  text-align: center;
-  background: none;
-  border: 1px solid #CCC;
-  border-radius: 8px;
-  transition: all 0.2s ease-in 0.1s;
-  margin-left: 25px; }
-  .contents.file-collect input.changename {
-    position: absolute;
-    border-radius: 0px;
-    left: -25px;
-    bottom: 10px;
-    overflow: hidden;
-    width: 98px;
-    height: 20px;
-    color: #595c5f;
-    line-height: 20px;
-    text-align: center;
-    font-size: 12px;
-    z-index: 0;
-    border: none; }
-    .contents.file-collect input.changename:hover {
-      background: none;
-      color: #3498DB; }
-  .contents.file-collect input:hover {
-    background: rgba(52, 152, 219, 0.8);
-    color: #fff; }
-.contents.file-collect .menu-zdy {
-  width: 120px;
-  padding: 4px;
-  height: auto;
-  background: #f8f8f8;
-  border: 1px solid #999;
-  text-align: center;
-  position: absolute;
-  display: none; }
-  .contents.file-collect .menu-zdy a {
-    text-decoration: none;
-    text-align: center;
-    line-height: 24px;
-    font-family: 'Microsoft YaHei';
-    font-size: 12px;
-    color: #666;
-    transition: all 0.2s ease-in 0.1s; }
-  .contents.file-collect .menu-zdy .menu-one, .contents.file-collect .menu-zdy .menu-two {
-    padding: 5px;
-    width: 100px;
-    height: 24px;
-    border-bottom: 1px dashed #FC0; }
-  .contents.file-collect .menu-zdy a:hover {
-    padding: 3px 5px;
-    color: #000;
-    background: #fff; }
 
 /*!
  * animate.css -http://daneden.me/animate
@@ -11995,200 +11876,5 @@ i[class^="icon"] {
   color: #7f8c8d; }
   .zyh-button-grey:hover {
     background-color: rgba(236, 240, 241, 0.7); }
-
-.contents.file-upload {
-  /*
-Uploadify
-Copyright (c) 2012 Reactive Apps, Ronnie Garcia
-Released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
-*/ }
-  .contents.file-upload .form-upload {
-    margin-left: 50px;
-    width: 30%; }
-    .contents.file-upload .form-upload .select {
-      margin-top: 10px; }
-      .contents.file-upload .form-upload .select .directory {
-        margin-bottom: 20px; }
-        .contents.file-upload .form-upload .select .directory:first-of-type {
-          margin-top: 15px; }
-        .contents.file-upload .form-upload .select .directory .select-span {
-          color: #7f8c8d;
-          line-height: 35px;
-          margin-top: 10px;
-          margin-right: 30px;
-          margin-bottom: 10px; }
-    .contents.file-upload .form-upload .input-file .file_upload_button a {
-      border: 1px solid #95a5a6;
-      line-height: 30px;
-      display: block;
-      width: 120px;
-      height: 30px;
-      text-align: center;
-      background-color: #ecf0f1;
-      border-radius: 4px;
-      color: #7f8c8d; }
-      .contents.file-upload .form-upload .input-file .file_upload_button a:hover {
-        background-color: rgba(236, 240, 241, 0.7); }
-    .contents.file-upload .form-upload .input-file #file_upload_input_button {
-      margin-top: 15px;
-      border: 1px solid #95a5a6;
-      line-height: 30px;
-      display: block;
-      width: 120px;
-      height: 30px;
-      text-align: center;
-      background-color: #ecf0f1;
-      border-radius: 4px;
-      color: #7f8c8d; }
-      .contents.file-upload .form-upload .input-file #file_upload_input_button:hover {
-        background-color: rgba(236, 240, 241, 0.7); }
-    .contents.file-upload .form-upload .input-file #keywords {
-      width: 100%; }
-    .contents.file-upload .form-upload .input-file .file-scan {
-      position: relative;
-      background: #D0EEFF;
-      border: 1px solid #99D3F5;
-      border-radius: 4px;
-      padding: 8px 12px;
-      overflow: hidden;
-      color: #1E88C7;
-      text-decoration: none;
-      text-indent: 0; }
-      .contents.file-upload .form-upload .input-file .file-scan:hover {
-        background: #AADFFD;
-        border-color: #78C3F3;
-        color: #004974;
-        text-decoration: none; }
-      .contents.file-upload .form-upload .input-file .file-scan input {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        opacity: 0; }
-    .contents.file-upload .form-upload .input-file .showFileName {
-      margin-top: 20px; }
-    .contents.file-upload .form-upload .progress {
-      margin-top: 10px; }
-  .contents.file-upload .uploadify {
-    position: relative;
-    margin-bottom: 1em; }
-  .contents.file-upload .uploadify-button {
-    background-color: #3a9bdc;
-    border: 1px solid #99D3F5;
-    border-radius: 4px;
-    color: white;
-    background-position: center top;
-    background-repeat: no-repeat;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    font: bold 12px Arial, Helvetica;
-    text-align: center;
-    width: 100%; }
-  .contents.file-upload .uploadify:hover .uploadify-button {
-    background: rgba(52, 152, 219, 0.7);
-    border-color: #78C3F3;
-    background-position: center bottom; }
-  .contents.file-upload .uploadify-button.disabled {
-    background-color: #D0D0D0;
-    color: #808080; }
-  .contents.file-upload .uploadify-queue {
-    width: 300px;
-    margin-bottom: 1em; }
-  .contents.file-upload .uploadify-queue-item {
-    background-color: #F5F5F5;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    font: 11px Verdana, Geneva, sans-serif;
-    margin-top: 5px;
-    max-width: 350px;
-    padding: 10px; }
-  .contents.file-upload .uploadify-error {
-    background-color: #FDE5DD !important; }
-  .contents.file-upload .uploadify-queue-item .cancel a {
-    background: url("../img/uploadify-cancel.png") 0 0 no-repeat;
-    float: right;
-    height: 16px;
-    text-indent: -9999px;
-    width: 16px; }
-  .contents.file-upload .uploadify-queue-item.completed {
-    background-color: #E5E5E5; }
-  .contents.file-upload .uploadify-progress {
-    background-color: #E5E5E5;
-    margin-top: 10px;
-    width: 100%; }
-  .contents.file-upload .uploadify-progress-bar {
-    background-color: #0099FF;
-    height: 3px;
-    width: 1px; }
-  .contents.file-upload div.tagsinput {
-    border: 1px solid #CCC;
-    background: #FFF;
-    padding: 5px;
-    width: 300px;
-    height: 100px;
-    overflow-y: auto; }
-  .contents.file-upload div.tagsinput span.tag {
-    border: 1px solid #a5d24a;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    display: block;
-    float: left;
-    padding: 5px;
-    text-decoration: none;
-    background: #cde69c;
-    color: #638421;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    font-family: helvetica;
-    font-size: 13px; }
-  .contents.file-upload div.tagsinput span.tag a {
-    font-weight: bold;
-    color: #82ad2b;
-    text-decoration: none;
-    font-size: 11px; }
-  .contents.file-upload div.tagsinput input {
-    width: 80px;
-    margin: 0px;
-    font-family: helvetica;
-    font-size: 13px;
-    border: 1px solid transparent;
-    padding: 5px;
-    background: transparent;
-    color: #000;
-    outline: 0px;
-    margin-right: 5px;
-    margin-bottom: 5px; }
-  .contents.file-upload div.tagsinput div {
-    display: block;
-    float: left; }
-  .contents.file-upload .tags_clear {
-    clear: both;
-    width: 100%;
-    height: 0px; }
-  .contents.file-upload .not_valid {
-    background: #FBD8DB !important;
-    color: #90111A !important; }
-
-.header-all #home_header {
-  border: none; }
-  .header-all #home_header .header-list {
-    font-size: 20px;
-    cursor: pointer; }
-    .header-all #home_header .header-list.active {
-      border-bottom: 3px solid #3498DB; }
-
-#rule .all-floor {
-  max-width: 80%; }
-  #rule .all-floor .floor {
-    margin: 30px 20px; }
-    #rule .all-floor .floor .article {
-      border-radius: 4px; }
-      #rule .all-floor .floor .article p {
-        padding: 15px;
-        border-radius: 4px;
-        background-color: #f0f0f0; }
-  #rule .all-floor input[type='submit'] {
-    margin-right: 40px; }
 
 /*# sourceMappingURL=app.css.map */
