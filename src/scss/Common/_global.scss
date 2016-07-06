@@ -1,4 +1,4 @@
-//Commonλ
+﻿//Commonλ
 .btn-slim {
     padding: 0 10px !important;
     font-size: 14px;
@@ -126,4 +126,9 @@
   filter: alpha(opacity=50);
   z-index: 10000;
   display: none;
+}
+//画一条线
+.line{
+  border-top: 1px solid $grey1;
+  width: 100%;
 }

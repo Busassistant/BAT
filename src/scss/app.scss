@@ -28,7 +28,12 @@
 @import "Common/page.scss";
 //Common-compoment
 @import "Common/baseCompoment.scss";
+//COmmon-scroll
+@import "Common/scroll/jquery.mCustomScrollbar.scss";
 
 
 // workers-mng
 @import "workers-mng/workers.scss";
+//lineManage
+@import "lineManage/lineManageFull.scss";
+@import "line-map/line-mapFull.scss";

@@ -76,3 +76,12 @@ gulp.task('clean', function() {
 gulp.task('default', ['clean'], function(){
     gulp.start('html','css','images','js', 'fonts', 'player');
 });
+
+gulp.task('watch',function(){
+	livereload.listen()
+	gulp.watch('./src/*.html',['html']);
+	gulp.watch('./src/scss/*/*.scss',['css']);
+	gulp.watch('./src/images/**/*',['images']);
+	gulp.watch('./src/js/**/*',['js']);
+	gulp.watch('./src/fonts/**/*',['fonts']);
+});

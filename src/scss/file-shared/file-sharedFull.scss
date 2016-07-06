@@ -18,11 +18,6 @@ $border_color:rgb(219,219,219);
 @mixin trans {
   transition-duration:0.5s;
 }
-//画一条线
-.line{
-  border-top: 1px solid $grey1;
-  width: 90%;
-}
 
 
 //预设
