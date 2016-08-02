@@ -121,13 +121,13 @@
             <div class="map">
 
                 <div class="alldot scroll">
-                    <div class="dot">1号站点</div>
+                    <div class="dot" longitude="118.46" latitude="32.03">南京</div>
                     <div class="line"></div>
-                    <div class="dot">1号站点</div>
+                    <div class="dot" longitude="113.14" latitude="23.16" id="test">广东</div>
                     <div class="line"></div>
-                    <div class="dot">1号站点</div>
+                    <div class="dot">上海</div>
                     <div class="line"></div>
-                    <div class="dot">1号站点</div>
+                    <div class="dot">厦门</div>
                     <div class="line"></div>
                     <div class="dot">1号站点</div>
                     <div class="line"></div>
@@ -155,24 +155,95 @@
     <!--<div class="clearfix"></div>-->
 </div>
 <script type="text/javascript">
-    // 百度地图API功能
-    var map = new BMap.Map("allmap",{minZoom:1,maxZoom:16}); // 创建Map实例,设置地图允许的最小/大级别
+/*    // 百度地图API功能
+    var map = new BMap.Map("allmap",{minZoom:1,maxZoom:25}); // 创建Map实例,设置地图允许的最小/大级别
     map.enableScrollWheelZoom(true);
     map.addControl(new BMap.NavigationControl());
 
+//    map.centerAndZoom(new BMap.Point(118.46, 32.03), 12);     //设置中心点与级别
 
-    map.centerAndZoom(new BMap.Point(118.46, 32.03), 12);     //设置中心点与级别
+    var point=map.centerAndZoom(new BMap.Point(118.46, 32.03), 12);
+    var marker = new BMap.Marker(point);
+    map.addOverlay(marker);
+    //添加麻点点击信息
+    var opts = {
+        width : 200,     // 信息窗口宽度
+        height: 100,     // 信息窗口高度
+        title : "海底捞王府井店" , // 信息窗口标题
+        enableMessage:true,//设置允许信息窗发送短息
+        message:"亲耐滴，晚上一起吃个饭吧？戳下面的链接看下地址喔~"
+    }
+    var infoWindow = new BMap.InfoWindow("地址：北京市东城区王府井大街88号乐天银泰百货八层", opts);  // 创建信息窗口对象
+    marker.addEventListener("click", function(){
+        map.openInfoWindow(infoWindow,point); //开启信息窗口
+    });
 
-    //添加点提示信息
-    var point = new BMap.Point(118.46, 32.03);
-    var sContent ="天安门坐落在中国北京市中心,故宫的南侧,与天安门广场隔长安街相望,是清朝皇城的大门...";
-    var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
-    map.openInfoWindow(infoWindow,point); //开启信息窗口
-//    document.getElementById("r-result").innerHTML = "信息窗口的内容是：<br />" + infoWindow.getContent();
+    //麻点
+    // 编写自定义函数,创建标注
+//    function addMarker(point){
+//        var marker = new BMap.Marker(point);
+//        map.addOverlay(marker);
+//        //添加麻点点击信息
+//        var opts = {
+//            width : 200,     // 信息窗口宽度
+//            height: 100,     // 信息窗口高度
+//            title : "海底捞王府井店" , // 信息窗口标题
+//            enableMessage:true,//设置允许信息窗发送短息
+//            message:"亲耐滴，晚上一起吃个饭吧？戳下面的链接看下地址喔~"
+//        }
+//        var infoWindow = new BMap.InfoWindow("地址：北京市东城区王府井大街88号乐天银泰百货八层", opts);  // 创建信息窗口对象
+//        marker.addEventListener("click", function(){
+//            map.openInfoWindow(infoWindow,point); //开启信息窗口
+//        });
+//    }
 
-    map.centerAndZoom(new BMap.Point(118.46, 32.03), 12);
+//    //添加麻点点击信息
+//    var opts = {
+//        width : 200,     // 信息窗口宽度
+//        height: 100,     // 信息窗口高度
+//        title : "海底捞王府井店" , // 信息窗口标题
+//        enableMessage:true,//设置允许信息窗发送短息
+//        message:"亲耐滴，晚上一起吃个饭吧？戳下面的链接看下地址喔~"
+//    }
+//    var infoWindow = new BMap.InfoWindow("地址：北京市东城区王府井大街88号乐天银泰百货八层", opts);  // 创建信息窗口对象
+//    marker.addEventListener("click", function(){
+//        map.openInfoWindow(infoWindow,point); //开启信息窗口
+//    });*/
 
-    map.centerAndZoom(new BMap.Point(118.46, 300), 12);
+
+    //添加麻点
+    var map = new BMap.Map("allmap");
+    map.enableScrollWheelZoom(true);        //允许鼠标滚轮
+    map.addControl(new BMap.NavigationControl());     //添加缩放控件
+    addMarker(118.46, 32.03);
+
+    function addMarker(longitude,latitude){
+        var point = new BMap.Point(longitude, latitude);
+        var marker = new BMap.Marker(point);  // 创建标注
+        map.addOverlay(marker);              // 将标注添加到地图中
+        map.centerAndZoom(point, 15);
+        var opts = {
+            width : 200,     // 信息窗口宽度
+            height: 100,     // 信息窗口高度
+            title : "海底捞王府井店" , // 信息窗口标题
+            enableMessage:true,//设置允许信息窗发送短息
+            message:"亲耐滴，晚上一起吃个饭吧？戳下面的链接看下地址喔~"
+        }
+        var infoWindow = new BMap.InfoWindow("地址：北京市东城区王府井大街88号乐天银泰百货八层", opts);  // 创建信息窗口对象
+        marker.addEventListener("click", function(){
+            map.openInfoWindow(infoWindow,point); //开启信息窗口
+        });
+    }
+
+
+    //添加平移效果
+
+    $("#test").click(function(){
+        var longgitude=$(this).attr("longitude");
+        var latitude=$(this).attr("latitude");
+        addMarker(longgitude,latitude);
+        map.panTo(new BMap.Point(longgitude,latitude));   //两秒后移动到广州
+    })
 </script>
 <!--美化滚动条-->
 <script>
