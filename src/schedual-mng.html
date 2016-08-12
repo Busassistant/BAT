@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<link rel="stylesheet" href="./css/app.min.css"/>
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/iCheck/1.0.1/skins/square/blue.css"/>
+<link href="//vjs.zencdn.net/5.8/video-js.min.css" rel="stylesheet">
+<!--<link rel="stylesheet" href="./css/square/blue.css"/>-->
+<!--<link rel="stylesheet" href="//cdn.bootcss.com/iCheck/1.0.2/skins/flat/blue.css"/>-->
+
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="js/jquery-accordion-menu.js"></script>
+<script src="js/icheck.js"></script>
+<script src="js/template.js"></script>
+<script src="js/edit.js"></script>
+
+<style type="text/css">
+    *{box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;}
+    body{background:#f0f0f0;}
+    /*.content{width:260px;margin:100px auto;}*/
+    .filterinput{
+        background-color:rgba(249, 244, 244, 0);
+        border-radius:15px;
+        width:90%;
+        height:30px;
+        border:thin solid #FFF;
+        text-indent:0.5em;
+        font-weight:bold;
+        color:#FFF;
+    }
+    #demo-list a{
+        overflow:hidden;
+        text-overflow:ellipsis;
+        -o-text-overflow:ellipsis;
+        white-space:nowrap;
+        width:100%;
+    }
+</style>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery("#jquery-accordion-menu").jqueryAccordionMenu();   //启用插件   jQuery等同于$
+
+    });
+
+    $(function(){
+        //顶部导航切换
+        $("#demo-list li").click(function(){
+            $("#demo-list li.active").removeClass("active")
+            $(this).addClass("active");
+        })
+    })
+</script>
+
+<body>
+<div class="mask"></div>
+<div class="main flex-row">
+    <div class="flex-2">
+        <div class="nav">
+            <div id="jquery-accordion-menu" class="jquery-accordion-menu white">
+                <ul id="demo-list" class="nav-list">
+                    <div class="logo">
+                        BusAssistant
+                    </div>
+                    <li><a href="workers-mng.html"><i class="fa fa-user-plus"></i>员工信息管理</a></li>
+                    <li><a href="cars-mng.html"><i class="fa fa-bus"></i>车辆信息管理 </a><span class="jquery-accordion-menu-label">
+                12 </span></li>
+                    <li class="active"><a href="schedual-mng.html"><i class="fa fa-table"></i>排班管理</a>
+                        <ul class="submenu">
+                            <li><a href="#">服务1 </a></li>
+                            <li><a href="#">服务2 </a></li>
+                            <li><a href="#">服务3 </a>
+                                <ul class="submenu">
+                                    <li><a href="#">服务4 </a></li>
+                                    <li><a href="#">服务5 </a></li>
+                                    <li><a href="#">服务6 </a></li>
+                                    <li><a href="#">服务7 </a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">服务8 </a></li>
+                        </ul>
+                    </li>
+                    <li><a href="file-shared.html"><i class="fa fa-level-up"></i>线路与站点管理</a></li>
+                    <li><a href="statistics.html"><i class="fa fa-bar-chart"></i>统计分析</a></li>
+                    <li><a href="system-mng.html"><i class="fa fa-cogs"></i>系统管理</a></li>
+                </ul>
+                <div class="jquery-accordion-menu-footer">
+                    Footer
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="contents flex-8">
+        <div id="schedual-mng">
+            <div id="my_date">
+            </div>
+            <!--<table class="table">
+            <thead>
+            <th>车辆</th>
+            <th>品牌</th>
+            <th>座位</th>
+            <th>注册日期</th>
+            <th>保险日期</th>
+            <th>驾驶证</th>
+            <th>行驶证</th>
+            <th style="width: 150px;"></th>
+            </thead>
+            <tbody>
+            <td>123</td>
+            <td>12321</td>
+            <td>2</td>
+            <td>123</td>
+            <td>123123</td>
+            <td>123123</td>
+            <td>123123</td>
+            <td>
+                <button class="btn btn-success btn-slim btn-edit" type="button" data-toggle="modal" data-target="#edit_car_info">编辑</button>
+                <button class="btn btn-danger btn-slim" type="button">删除</button>
+            </td>
+            </tbody>
+        </table>
+
+            <button id="new-car" class="btn btn-primary" type="button" data-toggle="modal" data-target="#add_new_car">添加车辆</button>-->
+        </div>
+    </div>
+
+</div>
+
+<script>
+    my_table('2014/08/26', 'my_date', function(d) {
+        console.log(d.now_date)
+    });
+
+    function my_table(e, f, callback) { /*e参数格式为y/m/d,必填传入now则获得今天的日历,f为载入容器的ID,callback为回调内容，会返回一些可能需要参数*/
+        if (e == 'now') e = GetDateStr(0);
+        var now_date = e;
+        var week_no = new Date(now_date).getDay();
+        var date_size = getCountDays(now_date);
+        var my_date = document.getElementById(f);
+        my_date.innerHTML = '<p><label id="pre_date"><</label>' + now_date.split('/')[0] + '年' + now_date.split('/')[1] + '月<label id="n_date">></label></p><table border="1"><thead><tr><td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>';
+        var tbody = my_date.getElementsByTagName('tbody')[0];
+        var td = tbody.getElementsByTagName('td');
+        var pre_date = now_date.split('/');
+        pre_date[1] = Number(pre_date[1]) - 1;
+        if (pre_date[1] < 1) {
+            pre_date[0] = Number(pre_date[0]) - 1;
+            pre_date[1] = 12;
+        };
+        if (pre_date[1] < 10) {
+            pre_date[1] = '0' + pre_date[1]
+        };
+        pre_date = pre_date[0] + '/' + pre_date[1] + '/' + pre_date[2];
+        var pre_week_no = new Date(pre_date).getDay();
+        var pre_date_size = getCountDays(pre_date);
+        var n_date = now_date.split('/');
+        n_date[1] = Number(n_date[1]) + 1;
+        if (n_date[1] > 12) {
+            n_date[0] = Number(n_date[0]) + 1;
+            n_date[1] = 1;
+        };
+        if (n_date[1] < 10) {
+            n_date[1] = '0' + n_date[1]
+        };
+        n_date = n_date[0] + '/' + n_date[1] + '/' + n_date[2];
+        var n_week_no = new Date(n_date).getDay();
+        var n_date_size = getCountDays(n_date);
+        var data = {}; //回调返回数据
+        data.now_date = now_date;
+        data.week_no = week_no;
+        data.date_size = date_size;
+        data.my_date = my_date;
+        data.pre_date = pre_date;
+        data.pre_week_no = pre_week_no;
+        data.n_week_no = n_week_no;
+        data.n_date_size = n_date_size;
+        for (i = 0; i < date_size; i++) {
+            td[(week_no + i)].innerHTML = (i + 1);
+            if ((week_no + i) == week_no + Number(now_date.split('/')[2])) {
+                td[(week_no + i - 1)].style.color = 'red';
+            };
+        };
+        for (i = 0; i < week_no; i++) {
+            td[i].innerHTML = (pre_date_size - week_no + i + 1);
+            td[i].style.color = '#cccccc';
+        }
+        for (i = week_no + date_size, j = 1; i < 42; i++, j++) {
+            td[i].innerHTML = j;
+            td[i].style.color = '#cccccc';
+        }
+        if(callback)callback(data);
+        document.getElementById('pre_date').onclick = function() {
+            var ntitle = this.parentNode.innerText.split('年');
+            var y = ntitle[0];
+            y = y.split('<');
+            y = y[1];
+            var m = ntitle[1];
+            m = m.split('月');
+            m = m[0];
+            m = m - 1;
+            if (m <= 0) {
+                m = 12;
+                y = y - 1;
+            };
+            if (m < 10) {
+                m = '0' + m;
+            }
+            my_table(y + '/' + m + '/01', f);
+        }
+        document.getElementById('n_date').onclick = function() {
+            var ntitle = this.parentNode.innerText.split('年');
+            var y = ntitle[0];
+            y = y.split('<');
+            y = y[1];
+            var m = ntitle[1];
+            m = m.split('月');
+            m = m[0];
+            m = Number(m) + 1;
+            if (m > 12) {
+                m = 1;
+                y = Number(y) + 1;
+            };
+            if (m < 10) {
+                m = '0' + m;
+            }
+            my_table(y + '/' + m + '/01', f);
+        }
+
+        function getCountDays(e) { //获取当前日期所在的月有多少天
+            var curDate = new Date(e);
+            var curMonth = curDate.getMonth();
+            curDate.setMonth(curMonth + 1);
+            curDate.setDate(0);
+            return curDate.getDate();
+        };
+
+        function GetDateStr(AddDayCount) {
+            var dd = new Date();
+            dd.setDate(dd.getDate() + AddDayCount); //获取AddDayCount天后的日期
+            var y = dd.getFullYear();
+            var m = dd.getMonth() + 1; //获取当前月份的日期
+            var d = dd.getDate();
+            return y + "/" + m + "/" + d;
+        };
+    }
+
+</script>
+
+
+</body>
+</html>

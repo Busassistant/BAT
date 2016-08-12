@@ -30,6 +30,9 @@
 @import "Common/baseCompoment.scss";
 //COmmon-scroll
 @import "Common/scroll/jquery.mCustomScrollbar.scss";
+//Common-time
+@import "Common/time/time.scss";
+
 
 
 // workers-mng
@@ -37,3 +40,6 @@
 //lineManage
 @import "lineManage/lineManageFull.scss";
 @import "line-map/line-mapFull.scss";
+
+//schedual-mng
+@import "schedual-mng/schedual-mngFull.scss";
