@@ -8,7 +8,6 @@
 
 
 <link rel="stylesheet" href="//cdn.bootcss.com/iCheck/1.0.1/skins/square/blue.css"/>
-<link href="//vjs.zencdn.net/5.8/video-js.min.css" rel="stylesheet">
 <!--<link rel="stylesheet" href="./css/square/blue.css"/>-->
 <!--<link rel="stylesheet" href="//cdn.bootcss.com/iCheck/1.0.2/skins/flat/blue.css"/>-->
 
@@ -18,6 +17,9 @@
 <script src="js/icheck.js"></script>
 <script src="js/template.js"></script>
 <script src="js/edit.js"></script>
+<script src="js/schedual-mng.js"></script>
+<!--美化滚动条-->
+<script src="js/scroll/jquery.mCustomScrollbar.concat.min.js"></script>
 
 <style type="text/css">
     *{box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;}
@@ -42,6 +44,7 @@
     }
 </style>
 
+
 <script type="text/javascript">
     jQuery(document).ready(function () {
         jQuery("#jquery-accordion-menu").jqueryAccordionMenu();   //启用插件   jQuery等同于$
@@ -58,7 +61,8 @@
 </script>
 
 <body>
-<div class="mask"></div>
+<!--<div class="mask"></div>-->
+
 <div class="main flex-row">
     <div class="flex-2">
         <div class="nav">
@@ -100,159 +104,232 @@
 
     <div class="contents flex-8">
         <div id="schedual-mng">
-            <div id="my_date">
+            <div class="header">
+                排班管理
             </div>
-            <!--<table class="table">
-            <thead>
-            <th>车辆</th>
-            <th>品牌</th>
-            <th>座位</th>
-            <th>注册日期</th>
-            <th>保险日期</th>
-            <th>驾驶证</th>
-            <th>行驶证</th>
-            <th style="width: 150px;"></th>
-            </thead>
-            <tbody>
-            <td>123</td>
-            <td>12321</td>
-            <td>2</td>
-            <td>123</td>
-            <td>123123</td>
-            <td>123123</td>
-            <td>123123</td>
-            <td>
-                <button class="btn btn-success btn-slim btn-edit" type="button" data-toggle="modal" data-target="#edit_car_info">编辑</button>
-                <button class="btn btn-danger btn-slim" type="button">删除</button>
-            </td>
-            </tbody>
-        </table>
-
-            <button id="new-car" class="btn btn-primary" type="button" data-toggle="modal" data-target="#add_new_car">添加车辆</button>-->
+            <div class="time-head flex-row">
+                <div class="flex-2">
+                    <select class="form-control" id="year">
+                        <option selected value="">2016</option>
+                        <option selected value="">2015</option>
+                        <option selected value="">2014</option>
+                        <option selected value="">2013</option>
+                    </select>
+                </div>
+                <div class="flex-3">
+                    <select class="form-control" id="month">
+                        <option selected value="">8月</option>
+                        <option selected value="">7月</option>
+                        <option selected value="">6月</option>
+                        <option selected value="">5月</option>
+                    </select>
+                </div>
+                <div class="flex-3"><button class="btn btn-primary">确定</button></div>
+            </div>
+            <div id="my_date"></div>            <!--这里是挺好的一个日历-->
         </div>
     </div>
 
 </div>
 
-<script>
-    my_table('2014/08/26', 'my_date', function(d) {
-        console.log(d.now_date)
-    });
+<!--模板文件-->
+<script type="text/html" id="time">
+    <p>
+        <label id="pre_date"><</label>
+        <span id="watchtime">{{year}}年{{month}}月</span>
+        <label id="n_date">></label>
+    </p>
+    <table border="1" id="table-time">
+        <thead>
+        <tr>
+            <td>日</td>
+            <td>一</td>
+            <td>二</td>
+            <td>三</td>
+            <td>四</td>
+            <td>五</td>
+            <td>六</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</script>
+<script type="text/html" id="Tpopstation">
+    <div class="schedual-mng-popStation" style="display: none">
+        <div class="popheader">
+            <div class="title">{{yearmonth}}{{day}}日</div>
+            <div class="close">×</div>
+            <div class="clearfix"></div>
+        </div>
 
-    function my_table(e, f, callback) { /*e参数格式为y/m/d,必填传入now则获得今天的日历,f为载入容器的ID,callback为回调内容，会返回一些可能需要参数*/
-        if (e == 'now') e = GetDateStr(0);
-        var now_date = e;
-        var week_no = new Date(now_date).getDay();
-        var date_size = getCountDays(now_date);
-        var my_date = document.getElementById(f);
-        my_date.innerHTML = '<p><label id="pre_date"><</label>' + now_date.split('/')[0] + '年' + now_date.split('/')[1] + '月<label id="n_date">></label></p><table border="1"><thead><tr><td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td></tr></thead><tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table>';
-        var tbody = my_date.getElementsByTagName('tbody')[0];
-        var td = tbody.getElementsByTagName('td');
-        var pre_date = now_date.split('/');
-        pre_date[1] = Number(pre_date[1]) - 1;
-        if (pre_date[1] < 1) {
-            pre_date[0] = Number(pre_date[0]) - 1;
-            pre_date[1] = 12;
-        };
-        if (pre_date[1] < 10) {
-            pre_date[1] = '0' + pre_date[1]
-        };
-        pre_date = pre_date[0] + '/' + pre_date[1] + '/' + pre_date[2];
-        var pre_week_no = new Date(pre_date).getDay();
-        var pre_date_size = getCountDays(pre_date);
-        var n_date = now_date.split('/');
-        n_date[1] = Number(n_date[1]) + 1;
-        if (n_date[1] > 12) {
-            n_date[0] = Number(n_date[0]) + 1;
-            n_date[1] = 1;
-        };
-        if (n_date[1] < 10) {
-            n_date[1] = '0' + n_date[1]
-        };
-        n_date = n_date[0] + '/' + n_date[1] + '/' + n_date[2];
-        var n_week_no = new Date(n_date).getDay();
-        var n_date_size = getCountDays(n_date);
-        var data = {}; //回调返回数据
-        data.now_date = now_date;
-        data.week_no = week_no;
-        data.date_size = date_size;
-        data.my_date = my_date;
-        data.pre_date = pre_date;
-        data.pre_week_no = pre_week_no;
-        data.n_week_no = n_week_no;
-        data.n_date_size = n_date_size;
-        for (i = 0; i < date_size; i++) {
-            td[(week_no + i)].innerHTML = (i + 1);
-            if ((week_no + i) == week_no + Number(now_date.split('/')[2])) {
-                td[(week_no + i - 1)].style.color = 'red';
-            };
-        };
-        for (i = 0; i < week_no; i++) {
-            td[i].innerHTML = (pre_date_size - week_no + i + 1);
-            td[i].style.color = '#cccccc';
-        }
-        for (i = week_no + date_size, j = 1; i < 42; i++, j++) {
-            td[i].innerHTML = j;
-            td[i].style.color = '#cccccc';
-        }
-        if(callback)callback(data);
-        document.getElementById('pre_date').onclick = function() {
-            var ntitle = this.parentNode.innerText.split('年');
-            var y = ntitle[0];
-            y = y.split('<');
-            y = y[1];
-            var m = ntitle[1];
-            m = m.split('月');
-            m = m[0];
-            m = m - 1;
-            if (m <= 0) {
-                m = 12;
-                y = y - 1;
-            };
-            if (m < 10) {
-                m = '0' + m;
-            }
-            my_table(y + '/' + m + '/01', f);
-        }
-        document.getElementById('n_date').onclick = function() {
-            var ntitle = this.parentNode.innerText.split('年');
-            var y = ntitle[0];
-            y = y.split('<');
-            y = y[1];
-            var m = ntitle[1];
-            m = m.split('月');
-            m = m[0];
-            m = Number(m) + 1;
-            if (m > 12) {
-                m = 1;
-                y = Number(y) + 1;
-            };
-            if (m < 10) {
-                m = '0' + m;
-            }
-            my_table(y + '/' + m + '/01', f);
-        }
+        <div class="popbody scroll">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>线路</th>
+                        <th>起点</th>
+                        <th>终点</th>
+                        <th>乘车人数</th>
+                        <th>司机</th>
+                        <th>车辆</th>
+                    </tr>
+                </thead>
 
-        function getCountDays(e) { //获取当前日期所在的月有多少天
-            var curDate = new Date(e);
-            var curMonth = curDate.getMonth();
-            curDate.setMonth(curMonth + 1);
-            curDate.setDate(0);
-            return curDate.getDate();
-        };
-
-        function GetDateStr(AddDayCount) {
-            var dd = new Date();
-            dd.setDate(dd.getDate() + AddDayCount); //获取AddDayCount天后的日期
-            var y = dd.getFullYear();
-            var m = dd.getMonth() + 1; //获取当前月份的日期
-            var d = dd.getDate();
-            return y + "/" + m + "/" + d;
-        };
-    }
-
+                <tbody>
+                    <tr>
+                        <td>线路1</td>
+                        <td>起点1</td>
+                        <td>终点1</td>
+                        <td>乘车人数1</td>
+                        <td>司机1</td>
+                        <td>车辆1</td>
+                    </tr>
+                    <tr>
+                        <td>线路1</td>
+                        <td>起点1</td>
+                        <td>终点1</td>
+                        <td>乘车人数1</td>
+                        <td>司机1</td>
+                        <td>车辆1</td>
+                    </tr>
+                    <tr>
+                        <td>线路1</td>
+                        <td>起点1</td>
+                        <td>终点1</td>
+                        <td>乘车人数1</td>
+                        <td>司机1</td>
+                        <td>车辆1</td>
+                    </tr>
+                    <tr>
+                        <td>线路1</td>
+                        <td>起点1</td>
+                        <td>终点1</td>
+                        <td>乘车人数1</td>
+                        <td>司机1</td>
+                        <td>车辆1</td>
+                    </tr>
+                    <tr>
+                        <td>线路1</td>
+                        <td>起点1</td>
+                        <td>终点1</td>
+                        <td>乘车人数1</td>
+                        <td>司机1</td>
+                        <td>车辆1</td>
+                    </tr>
+                    <tr>
+                        <td>线路1</td>
+                        <td>起点1</td>
+                        <td>终点1</td>
+                        <td>乘车人数1</td>
+                        <td>司机1</td>
+                        <td>车辆1</td>
+                    </tr>
+                    <tr>
+                        <td>线路1</td>
+                        <td>起点1</td>
+                        <td>终点1</td>
+                        <td>乘车人数1</td>
+                        <td>司机1</td>
+                        <td>车辆1</td>
+                    </tr>
+                    <tr>
+                        <td>线路1</td>
+                        <td>起点1</td>
+                        <td>终点1</td>
+                        <td>乘车人数1</td>
+                        <td>司机1</td>
+                        <td>车辆1</td>
+                    </tr>
+                    <tr>
+                        <td>线路1</td>
+                        <td>起点1</td>
+                        <td>终点1</td>
+                        <td>乘车人数1</td>
+                        <td>司机1</td>
+                        <td>车辆1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </script>
 
+<!--<script>-->
+    <!--(function($){-->
+        <!--var startScroll=function(){-->
+            <!--$(window).on("load",function(){-->
+                <!--$(".scroll").mCustomScrollbar();-->
+            <!--});-->
 
+            <!--$(".scroll").mCustomScrollbar({-->
+                <!--axis:"y", // horizontal scrollbar-->
+                <!--theme:"minimal-dark"-->
+            <!--});-->
+        <!--}-->
+    <!--})(jQuery);-->
+<!--</script>-->
+
+<!--美化option-->
+<script>
+    $(function(){
+        $('select').selectOrDie();
+    });
+</script>
+<script src="js/select/selectordie.js"></script>
 </body>
 </html>

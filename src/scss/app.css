@@ -13793,32 +13793,44 @@ yx-axis
 
 #schedual-mng {
   /*日历控件样式*/ }
+  #schedual-mng .header {
+    font-size: 20px;
+    padding-left: 20px;
+    margin-bottom: 15px; }
   #schedual-mng #my_date {
     width: 100%;
     background: #fafafa;
-    border-radius: 0.3em; }
-  #schedual-mng #my_date p {
-    height: 40px;
-    line-height: 40px;
-    position: relative;
-    text-align: center;
-    font-size: 1em;
-    color: #666; }
-  #schedual-mng #my_date table {
-    width: 100%;
-    BORDER-COLLAPSE: collapse;
-    border: solid #fafafa 1px;
-    font-size: 0.8em;
-    color: #666; }
-  #schedual-mng #my_date table thead td {
-    height: 30px;
-    line-height: 30px;
-    text-align: center; }
-  #schedual-mng #my_date table tbody td {
-    background-color: #FFF;
-    height: 40px;
-    line-height: 40px;
-    text-align: center; }
+    border-radius: 0.3em;
+    border: 1px solid #bdc3c7; }
+    #schedual-mng #my_date p {
+      height: 40px;
+      line-height: 40px;
+      position: relative;
+      text-align: center;
+      font-size: 1em;
+      color: #666;
+      border-bottom: 2px solid #ecf0f1; }
+    #schedual-mng #my_date table {
+      width: 100%;
+      BORDER-COLLAPSE: collapse;
+      border: solid #fafafa 1px;
+      font-size: 0.8em;
+      color: #666; }
+      #schedual-mng #my_date table thead td {
+        height: 30px;
+        line-height: 30px;
+        text-align: center; }
+      #schedual-mng #my_date table tbody td {
+        background-color: #FFF;
+        height: 40px;
+        line-height: 40px;
+        text-align: center; }
+        #schedual-mng #my_date table tbody td:hover {
+          cursor: pointer;
+          transition-duration: 0.5s;
+          background-color: #5faee3;
+          border-color: #3498DB;
+          color: white     !important; }
   #schedual-mng #pre_date {
     position: absolute;
     left: 0px;
@@ -13835,5 +13847,39 @@ yx-axis
     text-align: center;
     font-size: 1.6em;
     cursor: pointer; }
+  #schedual-mng .time-head {
+    margin-bottom: 15px; }
+
+.schedual-mng-popStation {
+  width: 700px;
+  height: 200px;
+  z-index: 10005;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  margin-left: -350px;
+  margin-top: 200px; }
+  .schedual-mng-popStation .popheader {
+    height: 35px;
+    background-color: #F8F8F8;
+    border-radius: 2px 2px 0 0;
+    line-height: 35px; }
+    .schedual-mng-popStation .popheader .title {
+      float: left;
+      padding-left: 10px; }
+    .schedual-mng-popStation .popheader .close {
+      float: right;
+      padding-right: 10px;
+      line-height: 30px; }
+  .schedual-mng-popStation .popbody {
+    height: 250px;
+    background-color: white;
+    padding: 1px; }
+    .schedual-mng-popStation .popbody table {
+      width: 85%;
+      margin-left: auto;
+      margin-right: auto; }
+      .schedual-mng-popStation .popbody table tbody td {
+        width: 70px; }
 
 /*# sourceMappingURL=app.css.map */
