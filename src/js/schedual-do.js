@@ -7,9 +7,7 @@ $(function(){
         console.log(d.now_date)
     });
 
-
-
-    var schedual=new Schedual();            //为了方便传更多的初始化参数
+    var schedual=new SchedualDo();            //为了方便传更多的初始化参数
 })
 
 function my_table(e, f, callback) { /*e参数格式为y/m/d,必填传入now则获得今天的日历,f为载入容器的ID,callback为回调内容，会返回一些可能需要参数*/
@@ -135,7 +133,7 @@ function my_table(e, f, callback) { /*e参数格式为y/m/d,必填传入now则�
 }
 
 ;(function($){  ///这样写的意义是思路比较清晰
-    var Schedual=function(){
+    var SchedualDo=function(){
         var self=this;
         console.log(";dfdfd");
         self.val;
@@ -145,9 +143,23 @@ function my_table(e, f, callback) { /*e参数格式为y/m/d,必填传入now则�
             self.poptime();
         })
 
+        $(".specialB").click(function () {
+            self.popspecial();
+        })
+
+        //关闭事件
+        //$(document).on("click",".close",function(event){
+        //        $(".mask").fadeOut(300,function(){
+        //            $(this).remove();
+        //        })
+        //        $(this).parent().parent().fadeOut(300,function(){
+        //            $(this).remove();
+        //        })
+        //});
+
         //strartScroll();
     };
-    Schedual.prototype={
+    SchedualDo.prototype={
         poptime:function(){
             var self=this;
             self.yearmonth=$("#watchtime").text().substring(0);
@@ -156,7 +168,6 @@ function my_table(e, f, callback) { /*e参数格式为y/m/d,必填传入now则�
                 day:self.val
             };
             var html=template('Tpopstation',data);
-            console.log("html:"+html);
             $("body").append(html);
             var mask='<div class="mask"></div>';
             $("body").append(mask);
@@ -175,14 +186,80 @@ function my_table(e, f, callback) { /*e参数格式为y/m/d,必填传入now则�
             })
             //绑定滚动条
             self.startScroll();
+        },
+        startScroll:function(){
+            var self=this;
+            $(window).on("load",function(){
+                $(".scroll").mCustomScrollbar();
+            });
 
-            //绑定点击add
-            //$("popspecial carman-add").click(function () {
-            //
-            //})
-            //$("popspecial car-add").click(function () {
-            //
-            //})
+            $(".scroll").mCustomScrollbar({
+                axis:"y", // horizontal scrollbar
+                theme:"minimal-dark"
+            });
+        },
+        popspecial:function(){
+            var self=this;
+            var data={
+            };
+            var html=template('Tpopspecial',data);
+            $("body").append(html);
+            var mask='<div class="mask"></div>';
+            $("body").append(mask);
+            $(".mask").fadeIn(200);
+            $(".popspecial").fadeIn(400);
+
+            //进行Common事件绑定
+            $(".close").click(function () {
+                $(".mask").fadeOut(300,function(){
+                    $(this).remove();
+                })
+                $(this).parent().parent().fadeOut(300,function(){
+                    $(this).remove();
+                })
+            })
+
+            //+绑定
+            $(".popspecial .carman-add").click(function(){
+                console.log("添加司机")
+                self.popcarman_add();
+            })
+            $(".popspecial .car-add").click(function(){
+                $(".car").append();
+                self.popcar_add();
+            })
+            //绑定滚动条
+            self.startScroll();
+        },
+        popcarman_add:function(){
+            var data={
+                title:"添加司机",
+                first:"姓名",
+                second:"备注:",
+            };
+            var html=template("Tpopcarman-add",data);
+            $("body").append(html);
+            $(".popcarman-add").fadeIn(200);
+            $(".popcarman-add .close").click(function () {
+                $(this).parent().parent().fadeOut(300,function(){
+                    $(this).remove();
+                })
+            })
+        },
+        popcar_add:function(){
+            var data={
+                title:"添加车辆",
+                first:"行驶证",
+                second:"备&nbsp;&nbsp;&nbsp;&nbsp;注:"
+            };
+            var html=template("Tpopcarman-add",data);
+            $("body").append(html);
+            $(".popcarman-add").fadeIn(200);
+            $(".popcarman-add .close").click(function () {
+                $(this).parent().parent().fadeOut(300,function(){
+                    $(this).remove();
+                })
+            })
         },
         startScroll:function(){
             var self=this;
@@ -196,5 +273,5 @@ function my_table(e, f, callback) { /*e参数格式为y/m/d,必填传入now则�
             });
         }
     }
-    window["Schedual"]=Schedual;
+    window["SchedualDo"]=SchedualDo;
 })(jQuery);

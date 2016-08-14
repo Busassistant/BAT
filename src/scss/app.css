@@ -11888,6 +11888,32 @@ i[class^="icon"] {
   .popwin_tips .content .message {
     margin-right: 20px; }
 
+.popwin {
+  width: 800px;
+  height: 500px;
+  z-index: 10005;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  margin-left: -400px;
+  margin-top: 100px; }
+  .popwin .popheader {
+    height: 35px;
+    background-color: #F8F8F8;
+    border-radius: 2px 2px 0 0;
+    line-height: 35px; }
+    .popwin .popheader .title {
+      float: left;
+      padding-left: 10px; }
+    .popwin .popheader .close {
+      float: right;
+      padding-right: 10px;
+      line-height: 30px; }
+  .popwin .popbody {
+    padding: 10px;
+    height: 400px;
+    background-color: white; }
+
 .pagination li a {
   margin: 5px;
   color: #7f8c8d; }
@@ -11913,6 +11939,20 @@ i[class^="icon"] {
   color: #7f8c8d; }
   .zyh-button-grey:hover {
     background-color: rgba(236, 240, 241, 0.7); }
+
+.zyh-button-blue {
+  margin-top: 15px;
+  border: 1px solid #95a5a6;
+  line-height: 30px;
+  display: block;
+  width: 120px;
+  height: 30px;
+  text-align: center;
+  background-color: #3498DB;
+  border-radius: 4px;
+  color: white; }
+  .zyh-button-blue:hover {
+    background-color: rgba(52, 152, 219, 0.7); }
 
 /*
 == malihu jquery custom scrollbar plugin ==
@@ -13677,6 +13717,60 @@ yx-axis
   width: 14px;
   height: 14px; }
 
+/*日历控件样式*/
+#my_date {
+  width: 100%;
+  background: #fafafa;
+  border-radius: 0.3em;
+  border: 1px solid #bdc3c7; }
+  #my_date p {
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    text-align: center;
+    font-size: 1em;
+    color: #666;
+    border-bottom: 2px solid #ecf0f1; }
+  #my_date table {
+    width: 100%;
+    BORDER-COLLAPSE: collapse;
+    border: solid #fafafa 1px;
+    font-size: 0.8em;
+    color: #666; }
+    #my_date table thead td {
+      height: 30px;
+      line-height: 30px;
+      text-align: center; }
+    #my_date table tbody td {
+      background-color: #FFF;
+      height: 40px;
+      line-height: 40px;
+      text-align: center; }
+      #my_date table tbody td:hover {
+        cursor: pointer;
+        transition-duration: 0.5s;
+        background-color: #5faee3;
+        border-color: #3498DB;
+        color: white     !important; }
+
+#pre_date {
+  position: absolute;
+  left: 0px;
+  top: 0;
+  width: 40px;
+  text-align: center;
+  font-size: 1.6em;
+  cursor: pointer; }
+
+#n_date {
+  position: absolute;
+  right: 0px;
+  top: 0;
+  width: 40px;
+  text-align: center;
+  font-size: 1.6em;
+  cursor: pointer; }
+
 #workers-mng #new-worker {
   display: block;
   margin-top: 40px; }
@@ -13791,74 +13885,22 @@ yx-axis
         background-color: #f9f9f9;
         cursor: pointer; }
 
-#schedual-mng {
-  /*日历控件样式*/ }
-  #schedual-mng .header {
-    font-size: 20px;
-    padding-left: 20px;
-    margin-bottom: 15px; }
-  #schedual-mng #my_date {
-    width: 100%;
-    background: #fafafa;
-    border-radius: 0.3em;
-    border: 1px solid #bdc3c7; }
-    #schedual-mng #my_date p {
-      height: 40px;
-      line-height: 40px;
-      position: relative;
-      text-align: center;
-      font-size: 1em;
-      color: #666;
-      border-bottom: 2px solid #ecf0f1; }
-    #schedual-mng #my_date table {
-      width: 100%;
-      BORDER-COLLAPSE: collapse;
-      border: solid #fafafa 1px;
-      font-size: 0.8em;
-      color: #666; }
-      #schedual-mng #my_date table thead td {
-        height: 30px;
-        line-height: 30px;
-        text-align: center; }
-      #schedual-mng #my_date table tbody td {
-        background-color: #FFF;
-        height: 40px;
-        line-height: 40px;
-        text-align: center; }
-        #schedual-mng #my_date table tbody td:hover {
-          cursor: pointer;
-          transition-duration: 0.5s;
-          background-color: #5faee3;
-          border-color: #3498DB;
-          color: white     !important; }
-  #schedual-mng #pre_date {
-    position: absolute;
-    left: 0px;
-    top: 0;
-    width: 40px;
-    text-align: center;
-    font-size: 1.6em;
-    cursor: pointer; }
-  #schedual-mng #n_date {
-    position: absolute;
-    right: 0px;
-    top: 0;
-    width: 40px;
-    text-align: center;
-    font-size: 1.6em;
-    cursor: pointer; }
-  #schedual-mng .time-head {
-    margin-bottom: 15px; }
+#schedual-mng .header {
+  font-size: 20px;
+  padding-left: 20px;
+  margin-bottom: 15px; }
+#schedual-mng .time-head {
+  margin-bottom: 15px; }
 
 .schedual-mng-popStation {
-  width: 700px;
-  height: 200px;
+  width: 800px;
+  height: 500px;
   z-index: 10005;
   position: fixed;
   top: 0;
   left: 50%;
-  margin-left: -350px;
-  margin-top: 200px; }
+  margin-left: -400px;
+  margin-top: 100px; }
   .schedual-mng-popStation .popheader {
     height: 35px;
     background-color: #F8F8F8;
@@ -13872,14 +13914,90 @@ yx-axis
       padding-right: 10px;
       line-height: 30px; }
   .schedual-mng-popStation .popbody {
-    height: 250px;
+    height: 400px;
     background-color: white;
     padding: 1px; }
     .schedual-mng-popStation .popbody table {
       width: 85%;
       margin-left: auto;
       margin-right: auto; }
-      .schedual-mng-popStation .popbody table tbody td {
-        width: 70px; }
+
+#schedual-do .header {
+  font-size: 20px;
+  padding-left: 20px;
+  margin-bottom: 15px; }
+#schedual-do .specialB {
+  margin: 10px 0 15px 0; }
+
+.popspecial .popbody {
+  overflow: auto; }
+.popspecial .carman .type, .popspecial .car .type {
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px; }
+.popspecial .carman .carman-floor, .popspecial .car .carman-floor {
+  margin-top: 15px;
+  margin-left: 40px;
+  width: 80%;
+  height: 50px;
+  border: 1px solid #dbdbdb;
+  position: relative;
+  border-radius: 4px; }
+  .popspecial .carman .carman-floor .name, .popspecial .car .carman-floor .name {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    font-size: 17px;
+    background-color: white; }
+  .popspecial .carman .carman-floor .other, .popspecial .car .carman-floor .other {
+    font-size: 15px;
+    padding-left: 40px; }
+    .popspecial .carman .carman-floor .other p, .popspecial .car .carman-floor .other p {
+      line-height: 52px; }
+  .popspecial .carman .carman-floor .operate i, .popspecial .car .carman-floor .operate i {
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 4px;
+    margin-right: 10px;
+    border: 1px solid white; }
+    .popspecial .carman .carman-floor .operate i:hover, .popspecial .car .carman-floor .operate i:hover {
+      border: 1px solid #dbdbdb;
+      background-color: #bdc3c7;
+      cursor: pointer;
+      transition-duration: 0.5s; }
+  .popspecial .carman .carman-floor:hover, .popspecial .car .carman-floor:hover {
+    transition-duration: 0.5s;
+    background-color: #f9f9f9;
+    cursor: pointer; }
+
+.popcarman-add.popwin {
+  width: 400px;
+  height: 200px;
+  z-index: 10006;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  margin-left: -200px;
+  margin-top: 200px;
+  border: 1px solid #dbdbdb !important;
+  border-radius: 4px; }
+  .popcarman-add.popwin .popheader {
+    height: 35px; }
+  .popcarman-add.popwin .popbody {
+    padding: 10px;
+    height: 163px;
+    background-color: white; }
+    .popcarman-add.popwin .popbody input {
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      border-bottom: 1px solid #bdc3c7; }
+    .popcarman-add.popwin .popbody .input {
+      margin-left: 66px;
+      margin-bottom: 11px; }
+      .popcarman-add.popwin .popbody .input .name {
+        margin-top: 10px; }
+      .popcarman-add.popwin .popbody .input .other {
+        margin-top: 20px; }
 
 /*# sourceMappingURL=app.css.map */

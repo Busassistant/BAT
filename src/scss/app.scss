@@ -30,8 +30,11 @@
 @import "Common/baseCompoment.scss";
 //COmmon-scroll
 @import "Common/scroll/jquery.mCustomScrollbar.scss";
-//Common-time
+//Common-time一个小的时间控件
 @import "Common/time/time.scss";
+//Common-mydate大的日历插件
+@import "Common/mydate/mydate.scss";
+
 
 
 
@@ -43,3 +46,5 @@
 
 //schedual-mng
 @import "schedual-mng/schedual-mngFull.scss";
+//schedual-do
+@import "schedual-do/schedual-do.scss";
